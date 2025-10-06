@@ -1,20 +1,145 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Shipping Policy</title>
+
+  <!-- Basic styling (paste into your site stylesheet if you prefer) -->
+  <style>
+    :root{
+      --max-width:720px;
+      --accent:#0b5fff;
+      --muted:#6b7280;
+      --bg:#ffffff;
+      --card:#f8fafc;
+      --radius:10px;
+    }
+    html,body{height:100%}
+    body{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:var(--bg);
+      color:#111827;
+      margin:24px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+    }
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+      background:var(--card);
+      padding:28px;
+      border-radius:var(--radius);
+      box-shadow:0 6px 18px rgba(15,23,42,0.06);
+    }
+    h1{margin:0 0 8px;font-size:1.5rem}
+    p{margin:0 0 12px;line-height:1.5}
+    .muted{color:var(--muted)}
+    .timeline{
+      background:#fff;
+      border:1px solid #e6eefc;
+      padding:12px 14px;
+      border-radius:8px;
+      margin:8px 0 16px;
+    }
+    .contact{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:8px;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    footer{margin-top:18px;font-size:0.92rem;color:var(--muted)}
+    @media (max-width:520px){
+      .container{padding:18px;margin:12px}
+    }
+  </style>
+
+  <!-- Optional structured data: edit name/logo/contact as needed -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"EmpowerNext Social Welfare Foundation",
+    "url":"https://empowernext.co.in",
+    "contactPoint":[
+      {
+        "@type":"ContactPoint",
+        "contactType":"customer support",
+        "email":"empowernext.ngo@gmail.com",
+        "telephone":"+91 63766 23599",
+        "areaServed":"IN",
+        "availableLanguage":["English"]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
-  <h1>Shipping Policy</h1>
-  <p>
-    As a non-profit organization, we primarily accept donations and do not ship physical goods.
-    However, if any merchandise, receipt, or acknowledgment letter is to be sent,
-    it will be dispatched digitally to your registered email ID or by post within 6-10 working days if required.
-  </p>
-  <p>
-    For any shipping-related queries, please contact us at
-    <a href="mailto:empowernext.ngo@gmail.com">empowernext.ngo@gmail.com</a> or +91 63766 23599.
-  </p>
+  <main class="container" role="main" aria-labelledby="policy-title">
+    <header>
+      <h1 id="policy-title">Shipping Policy</h1>
+      <p class="muted">Last updated: <time datetime="2025-10-06">October 6, 2025</time></p>
+    </header>
+
+    <section aria-labelledby="overview">
+      <h2 id="overview" style="font-size:1.05rem;margin-top:8px">Overview</h2>
+      <p>
+        EmpowerNext Foundation is a registered non-profit organization. We primarily accept donations and <strong>do not sell or ship physical products</strong>.
+      </p>
+    </section>
+
+    <section aria-labelledby="digital-delivery">
+      <h2 id="digital-delivery" style="font-size:1.05rem;margin-top:8px">Digital delivery (receipts & acknowledgments)</h2>
+      <div class="timeline" role="region" aria-label="Digital delivery timeline">
+        <p>
+          All donation acknowledgments, tax receipts, and confirmation letters are sent <strong>digitally</strong> to the donor's registered email address.
+          These are typically delivered <strong>within 2-5 working days</strong> of a successful transaction.
+        </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="physical-delivery">
+      <h2 id="physical-delivery" style="font-size:1.05rem;margin-top:8px">Physical delivery (rare / exceptional)</h2>
+      <p>
+        In the rare instance that a physical item (for example: printed acknowledgement, receipt, or merchandise) needs to be dispatched,
+        EmpowerNext Foundation will ship the item to the postal address provided by the donor. Physical items are dispatched
+        <strong>within 7-10 working days</strong> from the date the shipment is confirmed.
+      </p>
+      <p class="muted">
+        Donors will be notified by email with tracking information where applicable.
+      </p>
+    </section>
+
+    <section aria-labelledby="contact">
+      <h2 id="contact" style="font-size:1.05rem;margin-top:8px">Contact / Shipping queries</h2>
+      <p>If you have any questions related to delivery, shipping, or receipt of your donation acknowledgement, please contact us:</p>
+
+      <div class="contact" role="contentinfo">
+        <div>
+          <strong>Email:</strong>
+          <a href="mailto:empowernext.ngo@gmail.com">empowernext.ngo@gmail.com</a>
+        </div>
+        <div>
+          <strong>Phone:</strong>
+          <a href="tel:+916376623599">+91 63766 23599</a>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="important-note">
+      <h2 id="important-note" style="font-size:1.05rem;margin-top:12px">Important note</h2>
+      <p class="muted">
+        Please note: unless specifically stated at the time of donation, donors should not expect to receive any tangible products in exchange for their donation.
+      </p>
+    </section>
+
+    <footer>
+      <p>For changes or updates to this policy, please visit this page or contact our support team.</p>
+    </footer>
+  </main>
 </body>
 </html>
