@@ -154,9 +154,6 @@
                         Promoting education, skill-building, mental health awareness, and de-addiction programs for
                         underprivileged youth.
                     </p>
-                    <button class="speak-btn text-blue-500 hover:text-blue-700 transition duration-300">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
                 </div>
                 <!-- Aim 2: Skill Development -->
                 <div class="aim-card bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300">
@@ -165,9 +162,6 @@
                         Establishing vocational training centers to enhance youth employability and socio-economic
                         conditions.
                     </p>
-                    <button class="speak-btn text-green-500 hover:text-green-700 transition duration-300">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
                 </div>
                 <!-- Aim 3: Mental Health -->
                 <div class="aim-card bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300">
@@ -176,9 +170,6 @@
                         Fostering emotional resilience through awareness campaigns, counseling, and partnerships with
                         professionals.
                     </p>
-                    <button class="speak-btn text-purple-500 hover:text-purple-700 transition duration-300">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
                 </div>
                 <!-- Aim 4: De-addiction -->
                 <div class="aim-card bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300">
@@ -187,9 +178,6 @@
                         Conducting outreach and rehabilitation programs to combat substance abuse via support groups and
                         interventions.
                     </p>
-                    <button class="speak-btn text-red-500 hover:text-red-700 transition duration-300">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
                 </div>
                 <!-- Aim 5: Social Welfare -->
                 <div class="aim-card bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300">
@@ -197,9 +185,6 @@
                     <p class="text-gray-600 mb-4">
                         Providing food, clothing, healthcare, and disaster relief to those in need.
                     </p>
-                    <button class="speak-btn text-yellow-500 hover:text-yellow-700 transition duration-300">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
                 </div>
                 <!-- Aim 6: Environmental Protection -->
                 <div class="aim-card bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300">
@@ -207,9 +192,6 @@
                     <p class="text-gray-600 mb-4">
                         Leading initiatives like tree plantations, waste management awareness, and eco-friendly practices.
                     </p>
-                    <button class="speak-btn text-teal-500 hover:text-teal-700 transition duration-300">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
                 </div>
             </div>
             <!-- Take Action Section -->
@@ -318,13 +300,13 @@
                 EmpowerNext Social Welfare Foundation, India
             </p>
             <p class="mb-4">
-                Email: <a href="mailto:empowernext.ngo@gmail.com" class="hover:text-white transition duration-300">empowernext.ngo@gmail.com</a>
+                Email: <a href="mailto:info@empowernext.co.in" class="hover:text-white transition duration-300">info@empowernext.co.in</a>
             </p>
             <div class="flex justify-center space-x-4">
                 <a href="https://www.youtube.com/channel/UC2CX7Q-RUZqkQ5K1XIJzmiw" class="hover:text-white transition duration-300">YouTube</a>
                 <a href="https://www.linkedin.com/company/empowernext-ngo" class="hover:text-white transition duration-300">LinkedIn</a>
             </div>
-            <div class="flex justify-center items-center gap-4 pt-4">
+            <div class="flex flex-wrap justify-center items-center gap-4 pt-4 text-center">
             <a href="/privacy.html" class="hover:text-white transition duration-300">Privacy Policy</a><span>|</span>
             <a href="/terms-conditions.html" class="hover:text-white transition duration-300">Terms & Conditions</a><span>|</span>
             <a href="/cancellation-refund.html" class="hover:text-white transition duration-300">Cancellation & Refund</a><span>|</span>
@@ -345,7 +327,7 @@
                 heroQuote.textContent = "Generating a new quote...";
                 const prompt = "Provide a short, inspirational quote about social work, community, or helping others. Don't include the author's name.";
                 const apiKey = "AIzaSyBZaafo73M7YM2-Xr84p1fDrxQjqg14DFg";
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`;
 
                 try {
                     const response = await fetch(apiUrl, {
@@ -377,7 +359,7 @@
 
                 const prompt = `Provide 5 actionable, simple ideas for a young person in India to contribute to the cause of ${selectedAim}. Respond as a simple, comma-separated list of sentences. Do not include a title.`;
                 const apiKey = "AIzaSyBZaafo73M7YM2-Xr84p1fDrxQjqg14DFg";
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`;
 
                 try {
                     const response = await fetch(apiUrl, {
@@ -405,153 +387,6 @@
                 } finally {
                     ideasLoading.classList.add('hidden');
                 }
-            });
-
-            // --- Text-to-Speech ---
-            const speakBtns = document.querySelectorAll('.speak-btn');
-
-            // Helper function to convert base64 to ArrayBuffer
-            const base64ToArrayBuffer = (base64) => {
-                const binaryString = window.atob(base64);
-                const len = binaryString.length;
-                const bytes = new Uint8Array(len);
-                for (let i = 0; i < len; i++) {
-                    bytes[i] = binaryString.charCodeAt(i);
-                }
-                return bytes.buffer;
-            };
-
-            // Helper function to convert PCM to WAV
-            const pcmToWav = (pcmData, sampleRate) => {
-                const dataLength = pcmData.length * 2;
-                const buffer = new ArrayBuffer(44 + dataLength);
-                const view = new DataView(buffer);
-
-                let offset = 0;
-                // RIFF identifier
-                view.setUint8(offset, 'R'.charCodeAt(0));
-                view.setUint8(offset + 1, 'I'.charCodeAt(0));
-                view.setUint8(offset + 2, 'F'.charCodeAt(0));
-                view.setUint8(offset + 3, 'F'.charCodeAt(0));
-                offset += 4;
-                // file length
-                view.setUint32(offset, 36 + dataLength, true);
-                offset += 4;
-                // RIFF type
-                view.setUint8(offset, 'W'.charCodeAt(0));
-                view.setUint8(offset + 1, 'A'.charCodeAt(0));
-                view.setUint8(offset + 2, 'V'.charCodeAt(0));
-                view.setUint8(offset + 3, 'E'.charCodeAt(0));
-                offset += 4;
-                // format chunk identifier
-                view.setUint8(offset, 'f'.charCodeAt(0));
-                view.setUint8(offset + 1, 'm'.charCodeAt(0));
-                view.setUint8(offset + 2, 't'.charCodeAt(0));
-                view.setUint8(offset + 3, ' '.charCodeAt(0));
-                offset += 4;
-                // format chunk length
-                view.setUint32(offset, 16, true);
-                offset += 4;
-                // sample format (1 = PCM)
-                view.setUint16(offset, 1, true);
-                offset += 2;
-                // channel count
-                view.setUint16(offset, 1, true);
-                offset += 2;
-                // sample rate
-                view.setUint32(offset, sampleRate, true);
-                offset += 4;
-                // byte rate (sample rate * block align)
-                view.setUint32(offset, sampleRate * 2, true);
-                offset += 4;
-                // block align (channels * bytes per sample)
-                view.setUint16(offset, 2, true);
-                offset += 2;
-                // bits per sample
-                view.setUint16(offset, 16, true);
-                offset += 2;
-                // data chunk identifier
-                view.setUint8(offset, 'd'.charCodeAt(0));
-                view.setUint8(offset + 1, 'a'.charCodeAt(0));
-                view.setUint8(offset + 2, 't'.charCodeAt(0));
-                view.setUint8(offset + 3, 'a'.charCodeAt(0));
-                offset += 4;
-                // data chunk length
-                view.setUint32(offset, dataLength, true);
-                offset += 4;
-
-                // write the PCM data
-                for (let i = 0; i < pcmData.length; i++) {
-                    view.setInt16(offset + i * 2, pcmData[i], true);
-                }
-
-                return new Blob([view], {
-                    type: 'audio/wav'
-                });
-            };
-
-            speakBtns.forEach(btn => {
-                btn.addEventListener('click', async () => {
-                    const aimText = btn.previousElementSibling.textContent;
-                    if (!aimText) return;
-
-                    btn.disabled = true;
-                    btn.classList.add('opacity-50');
-
-                    const prompt = `Say in an informative tone: "${aimText}"`;
-                    const apiKey = "AIzaSyBZaafo73M7YM2-Xr84p1fDrxQjqg14DFg";
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
-
-                    try {
-                        const response = await fetch(apiUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                contents: [{
-                                    parts: [{
-                                        text: prompt
-                                    }]
-                                }],
-                                generationConfig: {
-                                    responseModalities: ["AUDIO"],
-                                    speechConfig: {
-                                        voiceConfig: {
-                                            prebuiltVoiceConfig: {
-                                                voiceName: "Kore"
-                                            }
-                                        }
-                                    }
-                                }
-                            }),
-                        });
-
-                        const result = await response.json();
-                        const audioData = result?.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data;
-                        const mimeType = result?.candidates?.[0]?.content?.parts?.[0]?.inlineData?.mimeType;
-
-                        if (audioData && mimeType && mimeType.startsWith("audio/")) {
-                            const sampleRate = parseInt(mimeType.match(/rate=(\d+)/)[1], 10);
-                            const pcmData = base64ToArrayBuffer(audioData);
-                            const pcm16 = new Int16Array(pcmData);
-                            const wavBlob = pcmToWav(pcm16, sampleRate);
-                            const audioUrl = URL.createObjectURL(wavBlob);
-                            const audio = new Audio(audioUrl);
-                            audio.play();
-                            audio.onended = () => {
-                                btn.disabled = false;
-                                btn.classList.remove('opacity-50');
-                            };
-                        } else {
-                            console.error('TTS audio data is missing from the response.');
-                            btn.disabled = false;
-                            btn.classList.remove('opacity-50');
-                        }
-                    } catch (error) {
-                        console.error('Error with TTS API call:', error);
-                        btn.disabled = false;
-                        btn.classList.remove('opacity-50');
-                    }
-                });
             });
 
     // --- Carousel Logic ---
