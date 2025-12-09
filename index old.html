@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpowerNext Social Welfare Foundation</title>
+    <link rel="icon" type="image/png" href="logo_rb.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            background-image: url('hannah-busing-Zyx1bK9mqmA-unsplash.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #fff;
+            width: 24px;
+            height: 24px;
+            -webkit-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo and Name -->
+            <a href="#" class="flex items-center space-x-3">
+                <img src="logo.png" alt="EmpowerNext Logo"
+                    class="rounded-full" height="60" width="60">
+                <!-- 60x60px -->
+                <div class="hidden sm:block">
+                    <h1 class="text-xl font-bold text-gray-900">EmpowerNext</h1>
+                    <p class="text-xs text-gray-600">Social Welfare Foundation</p>
+                </div>
+            </a>
+            <!-- Tagline for smaller screens -->
+            <p class="text-sm font-semibold text-gray-600 sm:hidden">Rise | Lead | Inspire</p>
+
+            <!-- Navigation Menu -->
+            <nav class="space-x-4 hidden md:flex gap-12">
+                <a href="#about" class="text-gray-600 hover:text-blue-600 transition duration-300">About Us</a>
+                <a href="#aims" class="text-gray-600 hover:text-blue-600 transition duration-300">Our Aims</a>
+                <a href="#gallery" class="text-gray-600 hover:text-blue-600 transition duration-300">Gallery</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600 transition duration-300">Contact</a>
+            </nav>
+
+            <!-- Donation Button -->
+            <a href="https://rzp.io/rzp/44SoHmh"
+                class="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition duration-300 shadow-md">Donate
+                Now</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg h-screen flex items-center justify-center text-center p-4">
+        <div class="bg-black bg-opacity-50 p-8 rounded-xl shadow-xl max-w-4xl">
+            <h2 class="text-5xl md:text-6xl font-extrabold text-white leading-tight mb-4">
+                EmpowerNext Social Welfare Foundation
+            </h2>
+            <p class="text-xl md:text-2xl text-white font-medium mb-8">
+                Rise | Lead | Inspire
+            </p>
+            <p id="heroQuote" class="text-lg text-gray-200 font-light mb-8">
+                "The best way to find yourself is to lose yourself in the service of others." - Mahatma Gandhi
+            </p>
+            <button id="generateQuoteBtn"
+                class="bg-blue-600 text-white font-bold px-8 py-4 rounded-full text-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center mx-auto space-x-2">
+                <span>Get Inspired</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-12">
+                <h3 class="text-4xl font-bold text-gray-900 mb-4">Our Mission</h3>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Based in India, EmpowerNext is dedicated to building a brighter future by empowering communities and
+                    creating a positive ripple effect. We believe that with the right support, every individual has the
+                    potential to Rise, Lead, and Inspire change.
+                </p>
+            </div>
+            <div class="flex flex-col md:flex-row items-center md:space-x-8">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <div class="rounded-xl shadow-lg transform hover:scale-105 transition duration-500 overflow-hidden">
+                        <iframe width="560" height="315"
+                            src="https://www.youtube.com/embed/mWAUhPthpv4?si=42RTIaVkXCXmUl6n"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                            class="w-full h-64 md:h-80 rounded-xl">
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 text-center md:text-left">
+                    <p class="text-2xl font-semibold italic text-gray-700 leading-relaxed">
+                        "Alone we can do so little; together we can do so much." - Helen Keller
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Aims Section -->
+    <section id="aims" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <h3 class="text-4xl font-bold text-gray-900 mb-12">Our Core Pillars of Change</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+                <!-- Aim 1: Youth Empowerment -->
+                <div class="aim-card bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300">
+                    <h4 class="text-2xl font-bold text-blue-600 mb-3">Youth Empowerment & Development</h4>
+                    <p class="text-gray-600">
+                        Promoting education, skill-building, mental health awareness, and de-addiction programs for
+                        underprivileged youth.
+                    </p>
+                </div>
+                <!-- Aim 2: Skill Development -->
+                <div class="aim-card bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300">
+                    <h4 class="text-2xl font-bold text-green-600 mb-3">Skill Development & Employment</h4>
+                    <p class="text-gray-600">
+                        Establishing vocational training centers to enhance youth employability and socio-economic
+                        conditions.
+                    </p>
+                </div>
+                <!-- Aim 3: De-addiction -->
+                <div class="aim-card bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300">
+                    <h4 class="text-2xl font-bold text-red-600 mb-3">De-addiction & Rehabilitation</h4>
+                    <p class="text-gray-600">
+                        Conducting outreach and rehabilitation programs to combat substance abuse via support groups and
+                        interventions.
+                    </p>
+                </div>
+                <!-- Aim 4: Mental Health -->
+                <div class="aim-card bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300">
+                    <h4 class="text-2xl font-bold text-purple-600 mb-3">Mental Health Promotion</h4>
+                    <p class="text-gray-600">
+                        Fostering emotional resilience through awareness campaigns, counseling, and partnerships with
+                        professionals.
+                    </p>
+                </div>
+                <!-- Aim 5: Social Welfare -->
+                <div class="aim-card bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300">
+                    <h4 class="text-2xl font-bold text-yellow-600 mb-3">Social Welfare & Relief</h4>
+                    <p class="text-gray-600">
+                        Providing food, clothing, healthcare, and disaster relief to those in need.
+                    </p>
+                </div>
+                <!-- Aim 6: Environmental Protection -->
+                <div class="aim-card bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition duration-300">
+                    <h4 class="text-2xl font-bold text-teal-600 mb-3">Environmental Protection</h4>
+                    <p class="text-gray-600">
+                        Leading initiatives like tree plantations, waste management awareness, and eco-friendly practices.
+                    </p>
+                </div>
+            </div>
+            <!-- Take Action Section -->
+            <div class="mt-16 bg-blue-100 rounded-xl p-8 shadow-inner">
+                <h3 class="text-3xl font-bold text-blue-800 mb-4">Take Action!</h3>
+                <p class="text-blue-700 mb-6">Want to make a difference? Select a cause and get actionable ideas from our AI partner!</p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
+                    <select id="aimSelect"
+                        class="w-full md:w-auto px-4 py-3 rounded-full text-gray-700 bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="youth empowerment and development">Youth Empowerment & Development</option>
+                        <option value="skill development and employment">Skill Development & Employment</option>
+                        <option value="mental health promotion">Mental Health Promotion</option>
+                        <option value="de-addiction and rehabilitation">De-addiction & Rehabilitation</option>
+                        <option value="social welfare and relief">Social Welfare & Relief</option>
+                        <option value="environmental protection">Environmental Protection</option>
+                        <option value="cultural and social engagement">Cultural & Social Engagement</option>
+                        <option value="collaborative welfare projects">Collaborative Welfare Projects</option>
+                    </select>
+                    <button id="generateIdeasBtn"
+                        class="bg-blue-600 text-white font-bold px-8 py-3 rounded-full hover:bg-blue-700 transition duration-300 shadow-md">
+                        Get Ideas!
+                    </button>
+                </div>
+                <div id="ideasLoading" class="hidden flex justify-center mt-6">
+                    <div class="loading-spinner"></div>
+                </div>
+                <div id="ideasContainer" class="bg-white rounded-xl p-6 mt-6 shadow-md text-left hidden">
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Ways You Can Help:</h4>
+                    <ul id="ideasList" class="list-disc list-inside space-y-2 text-gray-700"></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Gallery Section -->
+    <section id="gallery" class="py-16 bg-white">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <h3 class="text-4xl font-bold text-gray-900 mb-12">Our Work in Action</h3>
+            <div class="relative w-full max-w-4xl mx-auto overflow-hidden rounded-xl shadow-lg">
+                <div id="carousel" class="flex transition-transform duration-500 ease-in-out">
+                    <img src="img1.jpg" alt="Skill training session"
+                        class="carousel-item w-full flex-shrink-0 object-cover h-[300px] md:h-[450px]">
+                    <img src="img2.jpg" alt="Social relief efforts"
+                        class="carousel-item w-full flex-shrink-0 object-cover h-[300px] md:h-[450px]">
+                    <img src="img3.jpg" alt="Mental health awareness"
+                        class="carousel-item w-full flex-shrink-0 object-cover h-[300px] md:h-[450px]">
+                    <img src="img4.jpg" alt="Tree planting"
+                        class="carousel-item w-full flex-shrink-0 object-cover h-[300zpx] md:h-[450px]">
+                    <img src="img5.jpg" alt="Cultural event"
+                        class="carousel-item w-full flex-shrink-0 object-cover h-[300px] md:h-[450px]">
+                    <img src="img6.jpg" alt="Youth workshop"
+                        class="carousel-item w-full flex-shrink-0 object-cover h-[300px] md:h-[450px]">
+                    <img src="img7.jpg" alt="Youth workshop"
+                        class="carousel-item w-full flex-shrink-0 object-cover h-[300px] md:h-[450px]">
+                    <img src="img8.jpg" alt="Youth workshop"
+                        class="carousel-item w-full flex-shrink-0 object-cover h-[300px] md:h-[450px]">
+                </div>
+
+                <!-- Navigation Buttons -->
+                <button id="prevBtn"
+                    class="absolute top-1/2 left-4 transform -translate-y-1/2 text-white p-3 transition">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="nextBtn"
+                    class="absolute top-1/2 right-4 transform -translate-y-1/2 text-white p-3 transition">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <!-- Dot Indicators -->
+                <div id="dots" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                    <button class="dot w-3 h-3 rounded-full bg-white bg-opacity-50 transition"></button>
+                    <button class="dot w-3 h-3 rounded-full bg-white bg-opacity-50 transition"></button>
+                    <button class="dot w-3 h-3 rounded-full bg-white bg-opacity-50 transition"></button>
+                    <button class="dot w-3 h-3 rounded-full bg-white bg-opacity-50 transition"></button>
+                    <button class="dot w-3 h-3 rounded-full bg-white bg-opacity-50 transition"></button>
+                    <button class="dot w-3 h-3 rounded-full bg-white bg-opacity-50 transition"></button>
+                    <button class="dot w-3 h-3 rounded-full bg-white bg-opacity-50 transition"></button>
+                    <button class="dot w-3 h-3 rounded-full bg-white bg-opacity-50 transition"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="pb-12 pt-8 bg-sky-700 text-white">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <p class="text-3xl font-bold mb-4">
+                "The greatness of a community is most accurately measured by the compassionate actions of its members."
+            </p>
+            <h3 class="text-4xl md:text-5xl font-extrabold mb-6">Join Us in Making a Difference</h3>
+            <p class="text-lg mb-8 max-w-2xl mx-auto">
+                Your support fuels our mission. Every contribution, big or small, helps us empower the next generation
+                and create a more compassionate society.
+            </p>
+            <a href="https://rzp.io/rzp/44SoHmh"
+                class="bg-white text-sky-700 font-bold px-10 py-4 rounded-full text-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105 shadow-lg">
+                Donate Today
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer id="contact" class="bg-gray-800 text-gray-300 py-8">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <p>
+                EmpowerNext Social Welfare Foundation, India
+            </p>
+            <p class="mb-4">
+                Email: <a href="mailto:info@empowernext.co.in" class="hover:text-white transition duration-300">info@empowernext.co.in</a>
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="https://www.youtube.com/channel/UC2CX7Q-RUZqkQ5K1XIJzmiw" class="hover:text-white transition duration-300">
+                    <i class="fab fa-youtube"></i> YouTube </a>
+                <a href="https://www.linkedin.com/company/empowernext-ngo" class="hover:text-white transition duration-300">
+                    <i class="fab fa-linkedin"></i> LinkedIn </a>
+                <a href="https://whatsapp.com/channel/0029VbBZgyWHQbRwduHAKj45" class="hover:text-white transition duration-300">
+                    <i class="fab fa-whatsapp"></i> WhatsApp </a>
+            </div>
+            <div class="flex flex-wrap justify-center items-center gap-4 pt-4 text-center">
+            <a href="/privacy.html" class="hover:text-white transition duration-300">Privacy Policy</a><span>|</span>
+            <a href="/terms-conditions.html" class="hover:text-white transition duration-300">Terms & Conditions</a><span>|</span>
+            <a href="/cancellation-refund.html" class="hover:text-white transition duration-300">Cancellation & Refund</a><span>|</span>
+            <a href="/shipping.html" class="hover:text-white transition duration-300">Shipping Policy</a><span>|</span>
+            <a href="/contact.html" class="hover:text-white transition duration-300">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Quote Generation ---
+            const generateQuoteBtn = document.getElementById('generateQuoteBtn');
+            const heroQuote = document.getElementById('heroQuote');
+
+            generateQuoteBtn.addEventListener('click', async () => {
+                heroQuote.textContent = "Generating a new quote...";
+                const prompt = "Provide a short, inspirational quote about social work, community, or helping others. Don't include the author's name.";
+                const apiKey = "AIzaSyBZaafo73M7YM2-Xr84p1fDrxQjqg14DFg";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
+                    });
+
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    const result = await response.json();
+                    heroQuote.textContent = result?.candidates?.[0]?.content?.parts?.[0]?.text || "Failed to get a quote. Please try again.";
+                } catch (error) {
+                    console.error("Error generating quote:", error);
+                    heroQuote.textContent = "Sorry, something went wrong. Please try again later.";
+                }
+            });
+
+            // --- Action Ideas Generation ---
+            const generateIdeasBtn = document.getElementById('generateIdeasBtn');
+            const aimSelect = document.getElementById('aimSelect');
+            const ideasContainer = document.getElementById('ideasContainer');
+            const ideasList = document.getElementById('ideasList');
+            const ideasLoading = document.getElementById('ideasLoading');
+
+            generateIdeasBtn.addEventListener('click', async () => {
+                const selectedAim = aimSelect.value;
+                ideasContainer.classList.add('hidden');
+                ideasLoading.classList.remove('hidden');
+
+                const prompt = `Provide 5 actionable, simple ideas for a young person in India to contribute to the cause of ${selectedAim}. Respond as a simple, comma-separated list of sentences. Do not include a title.`;
+                const apiKey = "AIzaSyBZaafo73M7YM2-Xr84p1fDrxQjqg14DFg";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`;
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
+                    });
+
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    const result = await response.json();
+                    const rawIdeas = result?.candidates?.[0]?.content?.parts?.[0]?.text || "No ideas found.";
+
+                    ideasList.innerHTML = '';
+                    rawIdeas.split(',').forEach(idea => {
+                        const li = document.createElement('li');
+                        li.textContent = idea.trim();
+                        ideasList.appendChild(li);
+                    });
+
+                    ideasContainer.classList.remove('hidden');
+                } catch (error) {
+                    console.error("Error generating ideas:", error);
+                    ideasList.innerHTML = `<li>Sorry, we couldn't generate ideas right now. Please try again later.</li>`;
+                    ideasContainer.classList.remove('hidden');
+                } finally {
+                    ideasLoading.classList.add('hidden');
+                }
+            });
+
+    // --- Carousel Logic ---
+            const carousel = document.getElementById('carousel');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.getElementById('dots');
+            const slides = document.querySelectorAll('.carousel-item');
+            let currentIndex = 0;
+
+            const updateCarousel = () => {
+                const offset = -currentIndex * 100;
+                carousel.style.transform = `translateX(${offset}%)`;
+
+                // Update dots
+                document.querySelectorAll('.dot').forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.classList.remove('bg-opacity-50');
+                    } else {
+                        dot.classList.add('bg-opacity-50');
+                    }
+                });
+            };
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateCarousel();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateCarousel();
+            });
+
+            dotsContainer.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+
+            // Initial state
+            updateCarousel();
+
+            
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateCarousel();
+            }, 5000);
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>
