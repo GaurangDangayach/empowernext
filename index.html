@@ -320,6 +320,8 @@
                     <i class="fab fa-youtube"></i> YouTube </a>
                 <a href="https://www.linkedin.com/company/empowernext-ngo" class="hover:text-white transition duration-300">
                     <i class="fab fa-linkedin"></i> LinkedIn </a>
+                <a href="https://www.instagram.com/empowernext.ngo/" class="hover:text-white transition duration-300">
+                    <i class="fab fa-instagram"></i> Instagram </a>
                 <a href="https://whatsapp.com/channel/0029VbBZgyWHQbRwduHAKj45" class="hover:text-white transition duration-300">
                     <i class="fab fa-whatsapp"></i> WhatsApp </a>
             </div>
@@ -343,7 +345,7 @@
             generateQuoteBtn.addEventListener('click', async () => {
                 heroQuote.textContent = "Generating a new quote...";
                 const prompt = "Provide a short, inspirational quote about social work, community, or helping others. Don't include the author's name.";
-                const apiKey = "AIzaSyBZaafo73M7YM2-Xr84p1fDrxQjqg14DFg";
+                const apiKey = "AIzaSyDfM9ny2ZRAsXwvZr9JflpsyoZc7ZX3-U8";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`;
 
                 try {
@@ -375,7 +377,7 @@
                 ideasLoading.classList.remove('hidden');
 
                 const prompt = `Provide 5 actionable, simple ideas for a young person in India to contribute to the cause of ${selectedAim}. Respond as a simple, comma-separated list of sentences. Do not include a title.`;
-                const apiKey = "AIzaSyBZaafo73M7YM2-Xr84p1fDrxQjqg14DFg";
+                const apiKey = "AIzaSyDfM9ny2ZRAsXwvZr9JflpsyoZc7ZX3-U8";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`;
 
                 try {
