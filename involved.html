@@ -326,9 +326,44 @@
         </div>
 
         <!-- DONATE BUTTON -->
-        <a id="donate-now" href="https://rzp.io/rzp/44SoHmh" target="_blank" class="block mt-4 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-3 rounded-md transition">
+        <!-- <button id="donate-now" href="https://rzp.io/rzp/44SoHmh" target="_blank" class="block mt-4 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-3 rounded-md transition">
           Donate ₹<span id="donate-now-amt">1000</span>
-        </a>
+        </button> -->
+        <button id="donate-button" class="block w-full mt-4 text-center bg-blue-600 text-white font-semibold px-4 py-3 rounded-md">
+          Donate Now
+        </button>
+
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script>
+        document.getElementById('donate-button').onclick = function(e) {
+          const userAmount = document.getElementById('donation-amount').value;
+
+          if(!userAmount || userAmount < 1) {
+            alert("Please enter a valid amount");
+            return;
+          }
+
+          var options = {
+            "key": "rzp_live_SDD9HIe5owJvsH", // Get this from Razorpay Dashboard
+            "amount": userAmount * 100, // Razorpay works in Paisa (₹1 = 100 paisa)
+            "currency": "INR",
+            "name": "EmpowerNext",
+            "description": "Donation for Impact",
+            "handler": function (response){
+                alert("Payment Successful! ID: " + response.razorpay_payment_id);
+            },
+            "prefill": {
+                "name": "Donor Name",
+                "email": "donor@example.com"
+            },
+            "theme": { "color": "#2563eb" } // Blue-600
+          };
+
+          var rzp1 = new Razorpay(options);
+          rzp1.open();
+          e.preventDefault();
+        }
+        </script>
 
         <!-- small trust row -->
         <div class="mt-3 text-xs text-slate-500 flex items-center gap-2">
