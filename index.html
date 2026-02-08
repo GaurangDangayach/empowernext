@@ -277,7 +277,7 @@
             <!-- Take Action Section -->
             <div class="mt-16 bg-blue-100 rounded-xl p-8 shadow-inner">
                 <h3 class="text-3xl font-bold text-blue-800 mb-4">Take Action!</h3>
-                <p class="text-blue-700 mb-6">Want to make a difference? Select a cause and get actionable ideas from our AI partner!</p>
+                <p class="text-blue-700 mb-6">Want to make a difference? Select a cause and get actionable ideas!</p>
                 <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
                     <select id="aimSelect"
                         class="w-full md:w-auto px-4 py-3 rounded-full text-gray-700 bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -336,33 +336,136 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+            document.addEventListener('DOMContentLoaded', () => {
 
-            // --- Quote Generation ---
-            const generateQuoteBtn = document.getElementById('generateQuoteBtn');
-            const heroQuote = document.getElementById('heroQuote');
+                // --- Quote Data ---
+                const quotes = [
+                    "\"Small acts, when multiplied by millions of people, can transform the world.\" - Howard Zinn",
+                    "\"The best way to find yourself is to lose yourself in the service of others.\" - Mahatma Gandhi",
+                    "\"Alone we can do so little; together we can do so much.\" - Helen Keller",
+                    "\"Service to others is the rent you pay for your room here on earth.\" - Muhammad Ali",
+                    "\"No act of kindness, no matter how small, is ever wasted.\" - Aesop",
+                    "\"The meaning of life is to find your gift. The purpose of life is to give it away.\" - Pablo Picasso",
+                    "\"Community is where humility and selfless love are the standards.\" - Henri Nouwen",
+                    "\"Social work is the art of listening and the science of hope.\" - Unknown",
+                    "\"Speak up for those who cannot speak for themselves.\" - Proverbs 31:8",
+                    "\"Justice is what love looks like in public.\" - Cornel West",
+                    "\"Not all of us can do great things. But we can do small things with great love.\" - Mother Teresa",
+                    "\"The greatness of a community is most accurately measured by the compassionate actions of its members.\" - Coretta Scott King",
+                    "\"Service is the overflow which pours from a life filled with love and peace.\" - C.R. Lawton",
+                    "\"To give real service you must add something which cannot be bought or measured with money.\" - Douglas Adams",
+                    "\"I am only one, but still I am one. I cannot do everything, but still I can do something.\" - Edward Everett Hale",
+                    "\"The purpose of life is not to be happy. It is to be useful, to be honorable, to be compassionate.\" - Ralph Waldo Emerson",
+                    "\"Every person you fight for is a victory for the human spirit.\" - Unknown",
+                    "\"A life lived for others is the only life worth living.\" - Albert Einstein",
+                    "\"The closest thing to being cared for is to care for someone else.\" - Carson McCullers",
+                    "\"Unless someone like you cares a whole awful lot, nothing is going to get better. It's not.\" - Dr. Seuss",
+                    "\"How wonderful it is that nobody need wait a single moment before starting to improve the world.\" - Anne Frank",
+                    "\"Whatever you do will be insignificant, but it is very important that you do it.\" - Mahatma Gandhi",
+                    "\"There is no higher religion than human service. To work for the common good is the greatest creed.\" - Woodrow Wilson",
+                    "\"Social work is about helping people find their own power.\" - Unknown",
+                    "\"Change will not come if we wait for some other person or some other time.\" - Barack Obama",
+                    "\"You cannot get through a single day without having an impact on the world around you.\" - Jane Goodall",
+                    "\"The heart of a volunteer is not measured by size, but by the depth of the commitment to make a difference.\" - DeAnn Hollis",
+                    "\"We rise by lifting others.\" - Robert Ingersoll",
+                    "\"Life's most persistent and urgent question is, 'What are you doing for others?'\" - Martin Luther King Jr.",
+                    "\"The value of a man resides in what he gives and not in what he is capable of receiving.\" - Albert Einstein",
+                    "\"Human progress is neither automatic nor inevitable. Every step requires sacrifice and struggle.\" - Martin Luther King Jr.",
+                    "\"If you want to lift yourself up, lift up someone else.\" - Booker T. Washington",
+                    "\"The power of community to create change is the most potent force for good in the world.\" - Unknown",
+                    "\"Compassion is a verb.\" - Thich Nhat Hanh",
+                    "\"Be the change that you wish to see in the world.\" - Mahatma Gandhi",
+                    "\"When the 'I' is replaced by 'We', even illness becomes illness.\" - Malcolm X",
+                    "\"One of the most important things you can do on this earth is to let people know they are not alone.\" - Shannon L. Alder",
+                    "\"Social work is the bridge between despair and hope.\" - Unknown",
+                    "\"Empathy is simply listening, holding space, withholding judgment, and emotionally connecting.\" - Brené Brown",
+                    "\"We make a living by what we get, but we make a life by what we give.\" - Winston Churchill",
+                    "\"The world is changed by your example, not by your opinion.\" - Paulo Coelho",
+                    "\"Kindness is the language which the deaf can hear and the blind can see.\" - Mark Twain",
+                    "\"An ounce of practice is worth more than tons of preaching.\" - Mahatma Gandhi",
+                    "\"Wherever there is a human being, there is an opportunity for a kindness.\" - Seneca",
+                    "\"The hunger for love is much more difficult to remove than the hunger for bread.\" - Mother Teresa",
+                    "\"To serve is beautiful, but only if it is done with joy and a whole heart.\" - Pearl S. Buck",
+                    "\"The evolution of the human race is the history of the growth of brotherhood.\" - Jane Addams",
+                    "\"What we do for ourselves dies with us. What we do for others and the world remains and is immortal.\" - Albert Pike",
+                    "\"Giving is not just about making a donation. It is about making a difference.\" - Kathy Calvin",
+                    "\"In a world where you can be anything, be kind.\" - Jennifer Dukes Lee"
+                ];
 
-            generateQuoteBtn.addEventListener('click', async () => {
-                heroQuote.textContent = "Generating a new quote...";
-                const prompt = "Provide a short, inspirational quote about social work, community, or helping others. Don't include the author's name.";
-                const apiKey = "AIzaSyDUuINuF3aRRheMND7waQl2Nh56rb4e0QU";
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`;
+                // --- Quote Generation ---
+                const generateQuoteBtn = document.getElementById('generateQuoteBtn');
+                const heroQuote = document.getElementById('heroQuote');
 
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
-                    });
+                generateQuoteBtn.addEventListener('click', () => {
+                    // 1. Pick a random index based on the array length
+                    const randomIndex = Math.floor(Math.random() * quotes.length);
+                    
+                    // 2. Select the quote
+                    const selectedQuote = quotes[randomIndex];
 
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    const result = await response.json();
-                    heroQuote.textContent = result?.candidates?.[0]?.content?.parts?.[0]?.text || "Failed to get a quote. Please try again.";
-                } catch (error) {
-                    console.error("Error generating quote:", error);
-                    heroQuote.textContent = "Sorry, something went wrong. Please try again later.";
-                }
-            });
+                    // 3. Update the DOM
+                    heroQuote.textContent = selectedQuote;
+                });
+
+
+            const ideasDatabase = {
+                "youth empowerment and development": [
+                    "Mentor a younger student on career paths and goal setting",
+                    "Organize a local youth leadership workshop or public speaking club",
+                    "Start a community youth group to discuss local social issues",
+                    "Help underprivileged teens build a basic digital resume",
+                    "Volunteer at a local sports club to coach and inspire kids"
+                ],
+                "skill development and employment": [
+                    "Conduct a free basic computer skills class for job seekers",
+                    "Host a mock interview session for college graduates in your area",
+                    "Help local artisans set up an online shop or social media page",
+                    "Teach a weekend workshop on a craft or trade you are skilled in",
+                    "Share information about government vocational training schemes"
+                ],
+                "mental health promotion": [
+                    "Share a list of verified free mental health helplines on social media",
+                    "Organize a group walk or 'Nature for Mental Health' meet-up",
+                    "Host a workshop on stress management and breathing techniques",
+                    "Create a 'Kindness Board' in your community for positive messages",
+                    "Help reduce stigma by sharing educational posters about mental health"
+                ],
+                "de-addiction and rehabilitation": [
+                    "Identify and share locations of local de-addiction and rehab centers",
+                    "Organize an awareness rally or walkathon against substance abuse",
+                    "Host a talk with a medical professional about the dangers of addiction",
+                    "Create a support circle for families affected by substance abuse",
+                    "Distribute pamphlets listing the benefits of a drug-free lifestyle"
+                ],
+                "social welfare and relief": [
+                    "Organize a community food or clothing drive for the homeless",
+                    "Volunteer at a local shelter or soup kitchen for a few hours a week",
+                    "Help elderly neighbors with grocery shopping or medical appointments",
+                    "Collect and donate hygiene kits for disaster relief or local shelters",
+                    "Help people sign up for government social welfare and ration cards"
+                ],
+                "environmental protection": [
+                    "Organize a weekend neighborhood or local park cleanup drive",
+                    "Start a community composting project for kitchen waste",
+                    "Distribute saplings and teach neighbors how to care for them",
+                    "Host a workshop on reducing single-use plastics in the home",
+                    "Advocate for rainwater harvesting in your local residential society"
+                ],
+                "cultural and social engagement": [
+                    "Organize a 'Heritage Walk' to teach others about local history",
+                    "Host a community talent show or cultural exchange evening",
+                    "Start a local book club that focuses on diverse social perspectives",
+                    "Organize a street play (Nukkad Natak) to highlight social issues",
+                    "Help document and share oral histories from the elders in your community"
+                ],
+                "collaborative welfare projects": [
+                    "Partner with a local NGO to help digitize their records",
+                    "Launch a community-wide fundraiser for a local school's library",
+                    "Coordinate with local doctors to host a free health check-up camp",
+                    "Set up a 'Community Tool Library' for sharing home repair tools",
+                    "Work with local authorities to improve street lighting or safety"
+                ]
+            };
 
             // --- Action Ideas Generation ---
             const generateIdeasBtn = document.getElementById('generateIdeasBtn');
@@ -371,41 +474,35 @@
             const ideasList = document.getElementById('ideasList');
             const ideasLoading = document.getElementById('ideasLoading');
 
-            generateIdeasBtn.addEventListener('click', async () => {
+            generateIdeasBtn.addEventListener('click', () => {
                 const selectedAim = aimSelect.value;
+                
+                // UI Feedback: Show loading, hide container
                 ideasContainer.classList.add('hidden');
                 ideasLoading.classList.remove('hidden');
 
-                const prompt = `Provide 5 actionable, simple ideas for a young person in India to contribute to the cause of ${selectedAim}. Respond as a simple, comma-separated list of sentences. Do not include a title.`;
-                const apiKey = "AIzaSyDUuINuF3aRRheMND7waQl2Nh56rb4e0QU";
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`;
-
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
-                    });
-
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    const result = await response.json();
-                    const rawIdeas = result?.candidates?.[0]?.content?.parts?.[0]?.text || "No ideas found.";
-
+                // Small timeout so the transition feels natural
+                setTimeout(() => {
                     ideasList.innerHTML = '';
-                    rawIdeas.split(',').forEach(idea => {
-                        const li = document.createElement('li');
-                        li.textContent = idea.trim();
-                        ideasList.appendChild(li);
-                    });
+                    
+                    // 1. Get the local list based on selection
+                    const ideas = ideasDatabase[selectedAim] || [];
 
-                    ideasContainer.classList.remove('hidden');
-                } catch (error) {
-                    console.error("Error generating ideas:", error);
-                    ideasList.innerHTML = `<li>Sorry, we couldn't generate ideas right now. Please try again later.</li>`;
-                    ideasContainer.classList.remove('hidden');
-                } finally {
+                    if (ideas.length > 0) {
+                        // 2. Loop through the array and create list items
+                        ideas.forEach(idea => {
+                            const li = document.createElement('li');
+                            li.textContent = idea;
+                            ideasList.appendChild(li);
+                        });
+                    } else {
+                        ideasList.innerHTML = `<li>Please select a valid category to see ideas.</li>`;
+                    }
+
+                    // UI Feedback: Hide loading, show results
                     ideasLoading.classList.add('hidden');
-                }
+                    ideasContainer.classList.remove('hidden');
+                }, 400); 
             });
 
     // --- Carousel Logic ---
