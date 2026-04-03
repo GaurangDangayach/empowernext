@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpowerNext Social Welfare Foundation</title>
+    <link rel="icon" type="image/png" href="logo_rb.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .hero-bg {
+            background-image: url('hannah-busing-Zyx1bK9mqmA-unsplash.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #fff;
+            width: 24px;
+            height: 24px;
+            -webkit-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 600px;
+            padding-bottom: 2rem;
+        }
+
+        .accordion-item.active .chevron {
+            transform: rotate(180deg);
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tick-icon {
+            @apply fas fa-check text-[10px] text-blue-500 mr-3 mt-1.5 shrink-0;
+        }
+
+        .college-bullet {
+            width: 4px;
+            height: 4px;
+            border-radius: 9999px;
+            background-color: #9ca3af; /* gray-400 */
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 1.5rem;
+        }
+
+        /* Gallery Animation */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: marquee 30s linear infinite;
+        }
+
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header Section -->
+<!-- header.html -->
+<header class="bg-white shadow-lg sticky top-0 z-50">
+  <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+    <!-- Logo + Name -->
+    <a href="/index.html" class="flex items-center gap-3">
+      <img src="logo.png" alt="EmpowerNext Logo" class="rounded-full w-10 h-10 object-cover" />
+      <!-- On xs show only brand name abbreviated; on sm+ show full name & subtext -->
+      <div class="leading-tight">
+        <h1 class="text-sm font-bold text-gray-900 sm:text-xl sm:font-extrabold">EmpowerNext</h1>
+        <p class="text-[10px] text-gray-600 hidden sm:block">Social Welfare Foundation</p>
+      </div>
+    </a>
+
+    <!-- Small-screen tagline (visible on xs) -->
+    <p class="text-sm font-semibold text-gray-600 sm:hidden">Rise | Lead | Inspire</p>
+
+    <!-- Desktop nav (md+) -->
+    <nav class="hidden md:flex gap-8 items-center">
+      <a href="/index.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
+      <a href="/about.html" class="text-gray-600 hover:text-blue-600 transition duration-300">About Us</a>
+      <a href="/activites.html" class="block text-black-700 font-bold">Our Activities</a>
+      <a href="/involved.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Get Involved</a>
+      <a href="https://rzp.io/rzp/44SoHmh"
+         class="ml-2 bg-blue-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-blue-700 transition duration-300 shadow-md">
+         Donate Now
+      </a>
+    </nav>
+
+    <!-- Mobile: Hamburger -->
+    <button id="nav-toggle" aria-controls="mobile-menu" aria-expanded="false"
+            class="md:hidden inline-flex items-center justify-center p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <span class="sr-only">Open main menu</span>
+      <!-- icon -->
+      <svg id="hamburger" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+           xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+           d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu (hidden by default) -->
+  <nav id="mobile-menu" class="md:hidden hidden bg-white border-t shadow-sm">
+    <div class="px-4 py-4 space-y-3">
+      <a href="/index.html" class="block text-gray-700 hover:text-blue-600 transition">Home</a>
+      <a href="/about.html" class="block text-gray-700 hover:text-blue-600 transition">About Us</a>
+      <a href="/activites.html" class="block text-black-700 font-bold hover:text-blue-600 transition">Our Activities</a>
+      <a href="/involved.html" class="block text-gray-700 hover:text-blue-600 transition">Get Involved</a>
+
+      <!-- Donate inside mobile menu -->
+      <a href="https://rzp.io/rzp/44SoHmh"
+         class="block text-center bg-blue-600 text-white px-4 py-2 rounded-full font-semibold hover:bg-blue-700 transition">
+         Donate Now
+      </a>
+    </div>
+  </nav>
+
+
+  <!-- Floating Donate FAB for small screens -->
+  <a href="https://rzp.io/rzp/44SoHmh"
+     class="fixed bottom-4 right-4 md:hidden z-50 inline-flex items-center justify-center w-12 h-12 rounded-full shadow-lg bg-gradient-to-b from-blue-600 to-blue-700 text-white text-sm"
+     aria-label="Donate Now">
+    <!-- simple heart/donate icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+      <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 015.656 5.656L10 18.343 3.172 11.828a4 4 0 010-5.656z" />
+    </svg>
+  </a>
+</header>
+
+<!-- Minimal JS for menu toggle + basic accessibility -->
+<script>
+  (function () {
+    const btn = document.getElementById('nav-toggle');
+    const menu = document.getElementById('mobile-menu');
+    const hamburger = document.getElementById('hamburger');
+
+    function openMenu() {
+      menu.classList.remove('hidden');
+      btn.setAttribute('aria-expanded', 'true');
+      // change icon to X
+      hamburger.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
+    }
+    function closeMenu() {
+      menu.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+      // reset to hamburger
+      hamburger.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>';
+    }
+
+    btn.addEventListener('click', (e) => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      if (expanded) closeMenu(); else openMenu();
+    });
+
+    // close when a menu link is clicked (improves UX)
+    menu.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') closeMenu();
+    });
+
+    // close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    // optional: click outside to close
+    document.addEventListener('click', (e) => {
+      const isClickInside = menu.contains(e.target) || btn.contains(e.target);
+      if (!isClickInside) closeMenu();
+    });
+  })();
+</script>
+
+<img src="nyc_banner.png" class="w-full">
+    <!-- <header class="py-12 bg-white border-b border-gray-50">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Web Development Bootcamp</h1>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Transforming your passion into profession. Learn to build modern, responsive websites and empower the society through technology.
+                </p>
+            </div>
+        </div>
+    </header> -->
+
+    <!-- Main Content Wrapper -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
+        
+        <!-- Call to Action / Registration Section -->
+        <section class="mb-20 text-center">
+            <div class="bg-slate-900 rounded-3xl p-8 md:p-16 text-white shadow-2xl relative overflow-hidden">
+                <div class="relative z-10">
+                    <span class="inline-block px-4 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm font-semibold mb-6 border border-blue-500/30">
+                        Registration Open
+                    </span>
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6">Empower Your Future</h2>
+                    <p class="text-lg md:text-xl mb-10 text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                        Join 800+ scholars from India's top institutions for an immersive experience in technology, leadership, and wellness.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                        <a href="https://forms.gle/VdH5XHXdqh28YRve6" target="_blank" class="w-full sm:w-auto inline-block bg-blue-600 text-white font-bold px-10 py-4 rounded-xl text-lg hover:bg-blue-500 transition-all transform hover:scale-105 shadow-lg">
+                            Register Now <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                        <a href="https://drive.google.com/file/d/1CYI0N7hq0DS-wXR5MU8X-4FPy8yf0sPb/view?usp=sharing" target="_blank" class="w-full sm:w-auto inline-block bg-transparent border-2 border-white/20 text-white font-bold px-10 py-4 rounded-xl text-lg hover:bg-white/10 hover:border-white/40 transition-all transform hover:scale-105">
+                            View Brochure
+                        </a>
+                    </div>
+                </div>
+                <!-- Abstract Background Elements -->
+                <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl"></div>
+            </div>
+        </section>
+
+        <!-- Activities Accordion Section -->
+        <section class="mb-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-extrabold mb-4 tracking-tight">NYC 2026 <span class="gradient-text">Highlights</span></h2>
+                <p class="text-gray-500 max-w-xl mx-auto">Thoughtfully curated sessions designed to transform your personal and professional trajectory.</p>
+            </div>
+
+            <div class="mx-auto space-y-4">
+                
+                <!-- Category 1: Technical Mastery -->
+                <div class="accordion-item bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button class="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50/50 transition-colors" onclick="toggleAccordion(this)">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-indigo-50 p-2.5 rounded-lg text-indigo-600">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <span class="text-lg font-bold text-gray-800">Tech & Digital Literacy</span>
+                        </div>
+                        <i class="fas fa-chevron-down chevron transition-transform duration-300 text-gray-300"></i>
+                    </button>
+                    <div class="accordion-content px-16">
+                        <div class="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-gray-600">
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Web Development (MERN)</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>AI Tools & Prompt Engineering</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Data Visualization with Excel</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Canva for Visual Design</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Hands-on Live Projects</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Certification Assessments</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: Professional Excellence -->
+                <div class="accordion-item bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button class="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50/50 transition-colors" onclick="toggleAccordion(this)">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-blue-50 p-2.5 rounded-lg text-blue-600">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <span class="text-lg font-bold text-gray-800">Soft Skills & Leadership</span>
+                        </div>
+                        <i class="fas fa-chevron-down chevron transition-transform duration-300 text-gray-300"></i>
+                    </button>
+                    <div class="accordion-content px-16">
+                        <div class="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-gray-600">
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Personality Development</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Public Speaking</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Group Discussions & Debates</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Presentation Mastery</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Mock Interview Drills</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>IIT KGP Scholars Address</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Category 3: Holistic Wellness -->
+                <div class="accordion-item bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button class="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50/50 transition-colors" onclick="toggleAccordion(this)">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-emerald-50 p-2.5 rounded-lg text-emerald-600">
+                                <i class="fas fa-spa"></i>
+                            </div>
+                            <span class="text-lg font-bold text-gray-800">Wellness & Mental Health</span>
+                        </div>
+                        <i class="fas fa-chevron-down chevron transition-transform duration-300 text-gray-300"></i>
+                    </button>
+                    <div class="accordion-content px-16">
+                        <div class="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-gray-600">
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Morning Yoga & Meditation</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Habit Formation Workshops</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Overcoming Mind Illusions</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Nature Walks & Mindfulness</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Mental Resilience Sessions</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>One-to-One Interactions</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 4: Edutainment -->
+                <div class="accordion-item bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button class="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50/50 transition-colors" onclick="toggleAccordion(this)">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-rose-50 p-2.5 rounded-lg text-rose-600">
+                                <i class="fas fa-masks-theater"></i>
+                            </div>
+                            <span class="text-lg font-bold text-gray-800">Culture & Entertainment</span>
+                        </div>
+                        <i class="fas fa-chevron-down chevron transition-transform duration-300 text-gray-300"></i>
+                    </button>
+                    <div class="accordion-content px-16">
+                        <div class="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-gray-600">
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Musical Performance Nights</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Live Drama & Theater</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Interactive Team Games</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Guided Campus Tour</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Instrumental Workshops</div>
+                            <div class="flex items-start"><i class="fas fa-check" style="color:#3b82f6; margin-right:12px;"></i>Scholastic Contests</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Participating Colleges Section -->
+        <section class="mb-12">
+            <div class="mx-auto bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-gray-100">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4 border-b border-gray-50 pb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-1">Participating Institutions</h2>
+                        <p class="text-gray-500 text-sm italic">More than 50 colleges across India are participating in NYC 2026</p>
+                    </div>
+                    <div class="mt-4 md:mt-0 bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100 flex items-center">
+                        <i class="fas fa-users text-blue-500 mr-2 text-xs"></i>
+                        <span class="text-blue-700 font-bold text-lg">800+ Students</span>
+                    </div>
+                </div>
+
+                <!-- Columnar Bulleted List -->
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-y-3 gap-x-4 text-gray-600 text-sm">
+                    <script>
+                        const colleges = [
+                            "IIT Kharagpur", "IIT Bombay", "IIT Madras", "IIT Hyderabad", "IIT Dhanbad", "IISc Bangalore",
+                            "HIT Hyderabad", "HIT Pune", "NIT Trichy", "NIT Karnataka", "NIT Warangal", "MNNIT Allahabad",
+                            "HIT Amaravati", "IIT BHU", "HBTU Kanpur", "SRM Chennai", "COEP Tech", "VIT Pune",
+                            "SIT Pune", "G.H. Raisoni", "PICT", "Symbiosis Pune"
+                        ];
+                        
+                        colleges.forEach(college => {
+                            document.write(`
+                                <div class="flex items-center">
+                                    <span class="college-bullet"></span>
+                                    <span>${college}</span>
+                                </div>
+                            `);
+                        });
+                    </script>
+                    <div class="flex items-center text-blue-400 italic">
+                        <span class="college-bullet bg-blue-300"></span>
+                        <span>& many more...</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="campus-tour" class="mb-8 scroll-mt-10">
+            <div class="mx-auto">
+                <div class="bg-white p-4 md:p-6 rounded-[2rem] shadow-xl border border-gray-100">
+                    <div class="video-container shadow-inner bg-gray-100">
+                        <iframe 
+                            src="https://www.youtube.com/embed/Jbfr6wHEN8Y?si=RV4Y2AbgLgFqblIF" 
+                            title="IIT Kharagpur Campus Tour" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="mt-6 px-4 pb-2">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Explore the Venue: IIT Kharagpur</h3>
+                        <p class="text-gray-500">Get a glimpse of the historic campus and the vibrant environment where the convention will take place.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section class="w-full mb-12 overflow-hidden bg-white py-12 border-t border-gray-100">
+        <div class="mb-8 px-4 text-center">
+            <h4 class="text-sm font-bold uppercase tracking-widest">Last Year's Highlights</h4>
+        </div>
+        <div class="relative flex overflow-hidden">
+            <div class="animate-marquee flex gap-4 px-4">
+                <!-- Gallery Item Set 1 -->
+                <div class="flex gap-4 shrink-0">
+                    <img src="img4.jpg" class="w-72 h-48 object-cover rounded-2xl shadow-sm" alt="Youth Gathering">
+                    <img src="img1.jpg" class="w-72 h-48 object-cover rounded-2xl shadow-sm" alt="Tech Workshop">
+                    <img src="kgp1.jpg" class="w-72 h-48 object-cover rounded-2xl shadow-sm" alt="Leadership Talk">
+                    <img src="img17.jpg" class="w-72 h-48 object-cover rounded-2xl shadow-sm" alt="Yoga Session">
+                    <img src="tovp.png" class="w-72 h-48 object-cover rounded-2xl shadow-sm" alt="Team Building">
+                    <img src="kgp2.jpg" class="w-72 h-48 object-cover rounded-2xl shadow-sm" alt="Cultural Event">
+                </div>
+                <div class="flex gap-4 shrink-0">
+                    <img src="img4.jpg" class="w-72 h-48 object-cover rounded-2xl shadow-sm" alt="Youth Gathering">
+                    <img src="img1.jpg" class="w-72 h-48 object-cover rounded-2xl shadow-sm" alt="Tech Workshop">
+                    <img src="kgp1.jpg" class="w-72 h-48 object-cover rounded-2xl shadow-sm" alt="Leadership Talk">
+                    <img src="img17.jpg" class="w-72 h-48 object-cover rounded-2xl shadow-sm" alt="Yoga Session">
+                    <img src="tovp.png" class="w-72 h-48 object-cover rounded-2xl shadow-sm" alt="Team Building">
+                    <img src="kgp2.jpg" class="w-72 h-48 object-cover rounded-2xl shadow-sm" alt="Cultural Event">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleAccordion(button) {
+            const item = button.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                otherItem.classList.remove('active');
+            });
+
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const firstItem = document.querySelector('.accordion-item');
+            if(firstItem) firstItem.classList.add('active');
+        });
+    </script>
+
+    <!-- Footer Section -->
+    <footer id="contact" class="bg-gray-800 text-gray-300 py-8">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <p>
+                EmpowerNext Social Welfare Foundation, India
+            </p>
+            <p class="mb-4">
+                Email: <a href="mailto:info@empowernext.co.in" class="hover:text-white transition duration-300">info@empowernext.co.in</a>
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="https://www.youtube.com/channel/UC2CX7Q-RUZqkQ5K1XIJzmiw" class="hover:text-white transition duration-300">
+                    <i class="fab fa-youtube"></i> YouTube </a>
+                <a href="https://www.linkedin.com/company/empowernext-ngo" class="hover:text-white transition duration-300">
+                    <i class="fab fa-linkedin"></i> LinkedIn </a>
+                <a href="https://www.instagram.com/empowernext.ngo/" class="hover:text-white transition duration-300">
+                    <i class="fab fa-instagram"></i> Instagram </a>
+                <a href="https://whatsapp.com/channel/0029VbBZgyWHQbRwduHAKj45" class="hover:text-white transition duration-300">
+                    <i class="fab fa-whatsapp"></i> WhatsApp </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
